@@ -9,7 +9,21 @@ const storySchema = mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  caption: String,
+  like: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user"
+  }],
+  comments: {
+    type: Array,
+    default: []
+  },
+  shares: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user"
+  }],
+  picture: String
 })
 
 

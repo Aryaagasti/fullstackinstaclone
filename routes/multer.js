@@ -1,17 +1,17 @@
-const multer = require("multer");
-const path = require("path");
-const crypto = require("crypto");
+const multer = require('multer');
+const { v4: uuidv4 } = require("uuid");
+const path = require('path')
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/images/uploads");
+  destination: (req, file, cb) => {
+    cb(null, './public/images/uploads');
   },
-  filename: function (req, file, cb) {
-    const fn =
-      crypto.randomBytes(16).toString("hex") + path.extname(file.originalname);
-    cb(null, fn);
-  },
+  filename: (req, file, cb) => {
+    const uniqueFilename = uuidv4(); // Fix typo here
+    cb(null, uniqueFilename+path.extname(file.originalname));
+  }
 });
 
 const upload = multer({ storage: storage });
+
 module.exports = upload;

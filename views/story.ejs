@@ -1,0 +1,47 @@
+
+<!-- story.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Viewer</title>
+    <!-- Include any necessary CSS stylesheets -->
+    <link rel="stylesheet" href="path/to/your/styles.css">
+</head>
+<body>
+    <div class="story-container">
+        <div class="story">
+            <!-- Iterate over each image/video in the story -->
+            <% story.slides.forEach(function(slide) { %>
+                <div class="slide">
+                    <!-- Display the image/video for the slide -->
+                    <% if (slide.type === 'image') { %>
+                        <img src="<%= slide.url %>" alt="Story Image">
+                    <% } else if (slide.type === 'video') { %>
+                        <video controls>
+                            <source src="<%= slide.url %>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    <% } %>
+                    <!-- Optionally, display a caption or username for the slide -->
+                    <% if (slide.caption) { %>
+                        <div class="caption">
+                            <span><%= slide.username %></span>
+                            <p><%= slide.caption %></p>
+                        </div>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+        <!-- Optionally, include navigation buttons for navigating between slides -->
+        <div class="navigation-buttons">
+            <button class="prev-slide">Previous</button>
+            <button class="next-slide">Next</button>
+        </div>
+    </div>
+    <!-- Include any necessary JavaScript files for interactivity -->
+    <script src="path/to/your/scripts.js"></script>
+</body>
+</html>
